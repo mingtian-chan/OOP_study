@@ -102,7 +102,22 @@ class ReservationDBTest {
 
         // then
         assertThat(customer1.CheckId(reservedId)).isTrue();
+    }
+    @Test
+    @DisplayName("id가 다른 경우 다르다고 나옴")
+    void checkByIdTest2() {
+        // given
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Customer customer1 = new Customer("notChan", "12345678");
 
+        // when
+
+        Reservation userReservation = (Reservation) reservationDB1.get(0);
+        String reservedId = userReservation.getCustomer().getId();
+
+        // then
+        assertThat(customer1.CheckId(reservedId)).isFalse();
     }
 
     @Test
