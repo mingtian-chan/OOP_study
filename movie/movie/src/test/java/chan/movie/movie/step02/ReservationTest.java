@@ -74,12 +74,27 @@ class ReservationTest {
     // DB에 접근해서 customer 의 id, name 같은 reservation 반환
     void checkTest() {
         // given
-        Customer customer1 = new Customer("chan", "45694410");
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
 
         // when
-
+        boolean ret = reservationAvatar1.check("chan", "45694410");
         // then
+        Assertions.assertThat(ret).isTrue();
     }
+
+    @Test
+    @DisplayName("체크 테스트")
+    // DB에 접근해서 customer 의 id, name 같은 reservation 반환
+    void checkTestFail() {
+        // given
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
+
+        // when
+        boolean ret = reservationAvatar1.check("Not chan", "12345678");
+        // then
+        Assertions.assertThat(ret).isFalse();
+    }
+
 
 
     @Test
