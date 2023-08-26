@@ -77,11 +77,11 @@ class ReservationDBTest {
     void DBSizeTest() {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
 
 
         // when
-        reservationDB1.insert(reservationAvatar1);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+
 
         // then
         assertThat(reservationDB1.size()).isEqualTo(1);
