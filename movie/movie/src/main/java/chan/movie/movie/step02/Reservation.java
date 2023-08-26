@@ -2,6 +2,8 @@ package chan.movie.movie.step02;
 
 import chan.movie.money.Money;
 
+import java.util.ArrayList;
+
 public class Reservation {
     private Customer customer;
     private Screening Screening;
@@ -22,9 +24,13 @@ public class Reservation {
         reservationDB.insert(this);
     }
 
-    public Reservation Check(){
+    public Customer getCustomer() {
+        return customer;
+    }
 
-        return ;
-
+    public boolean check(String name, String id) {
+        if (customer.CheckName(name) && customer.CheckId(id)) {
+            return true;
+        } else return false;
     }
 }
