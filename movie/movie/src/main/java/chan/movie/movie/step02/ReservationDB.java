@@ -9,6 +9,8 @@ public class ReservationDB extends ArrayList {
         this.arrayList = reservationDB;
     }
 
+    // 생각해보니까 insert랑 delete를 분리하는게 좋지않았을까..
+    // 책임이 너무 커진 느낌인데...
 
     public void insert(Reservation reservation) {
         this.add(reservation);
