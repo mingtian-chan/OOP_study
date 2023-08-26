@@ -20,6 +20,11 @@ public class Reservation {
         this.audienceCount = audienceCount;
         this.reservationDB = reservationDB;
         reservationDB.insert(this);
+    }
+
+    public Reservation Check(){
+
+        return ;
 
     }
 }

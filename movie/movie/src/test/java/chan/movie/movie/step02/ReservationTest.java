@@ -6,6 +6,7 @@ import chan.movie.movie.step02.pricing.PeriodCondition;
 import chan.movie.movie.step02.pricing.SequenceCondition;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
@@ -49,6 +50,13 @@ class ReservationTest {
 
         // then
         System.out.println("reservationAvatar1 = " + reservationAvatar1);
+    }
+
+    @Test
+    @DisplayName("체크 테스트")
+    // DB에 접근해서 customer 의 id, name 같은 reservation 반환
+    Reservation checkTest() {
+
     }
 
 
