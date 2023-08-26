@@ -13,6 +13,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +23,7 @@ class ScreeningTest {
     Movie avatar;
     Screening screeningAvatar;
     Customer chan;
+    ReservationDB reservationDB;
 
     @BeforeEach
     public void beforeEach(){
@@ -37,6 +39,9 @@ class ScreeningTest {
         screeningAvatar = new Screening(avatar, 120, LocalDateTime.of(2021, 1, 1, 0, 0, 0));
 
         chan = new Customer("chan", "45694410");
+
+        reservationDB = new ReservationDB(new ArrayList());
+
     }
 
 
@@ -55,7 +60,7 @@ class ScreeningTest {
     @Test
     void reserveTest() {
         // given
-        Reservation reservationAvatar = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5);
+        Reservation reservationAvatar = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
         // when
 
         // then

@@ -8,6 +8,7 @@ public class Screening {
     private Movie movie;
     private int sequence;
     private LocalDateTime whenScreened;
+    private ReservationDB reservationDB;
 
     public Screening(Movie movie, int sequence, LocalDateTime whenScreened) {
         this.movie = movie;
@@ -29,7 +30,7 @@ public class Screening {
 
     public Reservation reserve(Customer customer, int audienceCount) {
             return new Reservation(customer, this, calculateFee(audienceCount),
-                audienceCount);
+                audienceCount,reservationDB);
     }
 
     private Money calculateFee(int audienceCount) {
