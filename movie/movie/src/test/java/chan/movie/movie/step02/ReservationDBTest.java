@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import static chan.movie.movie.step02.MovieCategory.TWO_DIMENSION;
 import static org.assertj.core.api.Assertions.*;
 
 class ReservationDBTest {
@@ -35,8 +36,10 @@ class ReservationDBTest {
                         new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10,0), LocalTime.of(11,59)),
                         new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))));
 
-        screeningAvatar = new Screening(avatar, 120, LocalDateTime.of(2021, 1, 1, 0, 0, 0));
-
+        screeningAvatar = new Screening(avatar, TWO_DIMENSION,120,
+                LocalDateTime.of(2021, 1, 1, 0, 0, 0),
+                "성신여대점", "11층 09관"
+        );
         chan = new Customer("chan", "45694410");
 
 
