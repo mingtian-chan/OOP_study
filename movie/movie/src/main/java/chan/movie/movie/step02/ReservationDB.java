@@ -14,14 +14,15 @@ public class ReservationDB extends ArrayList {
         this.add(reservation);
     }
 
-    public void check(String name, String id){
-        System.out.println("Function Called");
+    public ArrayList check(String name, String id){
+        ArrayList returnList = new ArrayList();
         for (int i = 0; i < this.size(); i++) {
             Reservation reservation = (Reservation) this.get(i);
             if (reservation.check(name, id)) {
-                System.out.println("reservation = " + reservation);
+                returnList.add(reservation);
             }
         }
+        return returnList;
     }
 
     public void delete() {

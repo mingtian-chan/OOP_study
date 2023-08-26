@@ -147,34 +147,58 @@ class ReservationDBTest {
         Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
         Reservation reservationAvatar2 = new Reservation(customerB, screeningAvatar, screeningAvatar.getMovieFee(), 3, reservationDB1);
 
-
         // when
-        reservationDB1.check("A", "1234");
+        ArrayList retList = reservationDB1.check("A", "1234");
+        ArrayList ans = new ArrayList();
+        ans.add(reservationAvatar1);
 
         // then
-
+        assertThat(retList).isEqualTo(ans);
 
     }
     @Test
     void checkTest2() {
 
         // given
-        // name과 id가 다르면 DB에서 reservation이 나오지 않는다.
+        // name이나 id가 다르면 DB에서 reservation이 나오지 않는다.
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+
+        Customer customerA = new Customer("A", "1234");
+        Customer customerB = new Customer("B", "5678");
+
+        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar2 = new Reservation(customerB, screeningAvatar, screeningAvatar.getMovieFee(), 3, reservationDB1);
 
         // when
+        ArrayList retList = reservationDB1.check("Error", "1234");
+        ArrayList ans = new ArrayList();
 
         // then
+        assertThat(retList).isEqualTo(ans);
     }
 
     @Test
     void checkTest3() {
 
         // given
-        // 두개의 DB에 두개의 reservation을 넣고, name과 id로 체크했을 때, DB가 다르면 안 나온다.
+        // 하나의 DB에 두개의 reservation을 넣고, name과 id로 체크했을 때, 같은 reservation이 여러개면 여러개가 모두 하나의
+        // arrayList에 담겨서 나온다.
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+
+        Customer customerA = new Customer("A", "1234");
+        Customer customerB = new Customer("B", "5678");
+
+        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar2 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 3, reservationDB1);
 
         // when
+        ArrayList retList = reservationDB1.check("A", "1234");
+        ArrayList ans = new ArrayList();
+        ans.add(reservationAvatar1);
+        ans.add(reservationAvatar2);
 
         // then
+        assertThat(retList).isEqualTo(ans);
     }
 
     @Test
