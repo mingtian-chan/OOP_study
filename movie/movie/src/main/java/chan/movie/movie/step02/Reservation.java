@@ -13,9 +13,6 @@ public class Reservation {
     private LocalDateTime reservedTime;
     private ReservationDB reservationDB;
 
-    public void insertData(Reservation reservation, ReservationDB reservationDB) {
-        reservationDB.insert(reservation);
-    }
 
     public Reservation(Customer customer, Screening Screening, Money fee, int audienceCount,LocalDateTime reservedTime, ReservationDB reservationDB) {
         this.customer = customer;
