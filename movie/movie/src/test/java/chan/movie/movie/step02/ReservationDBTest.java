@@ -72,10 +72,9 @@ class ReservationDBTest {
         // then
         assertThat(reservationDB1).isNotSameAs(reservationDB2);
     }
-
     @Test
     @DisplayName("DB에서 Customer 정보 받기")
-    void getCustomerTest() {
+    void DBSizeTest() {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
         Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
@@ -89,8 +88,67 @@ class ReservationDBTest {
     }
 
     @Test
-    void checkTest() {
+    @DisplayName("id로 DB체크")
+    void checkByIdTest() {
+        // given
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Customer customer1 = new Customer("chan", "45694410");
 
+        // when
+
+        Reservation userReservation = (Reservation) reservationDB1.get(0);
+        String reservedId = userReservation.getCustomer().getId();
+
+        // then
+        assertThat(customer1.CheckId(reservedId)).isTrue();
+
+    }
+
+    @Test
+    @DisplayName("DB에서 Customer 정보 받기")
+    void getCustomerTest() {
+        // given
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+
+        // when
+        // 호출하면서 바로 DB에 들어가야함
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+
+        // then
+        assertThat(reservationDB1.size()).isEqualTo(1);
+    }
+
+    @Test
+    void checkTest1() {
+
+        // given
+        // 하나의 DB에 두개의 reservation을 넣고, name과 id로 DB를 돌면서 맞는 reservation을 리턴
+
+        // when
+
+        // then
+    }
+    @Test
+    void checkTest2() {
+
+        // given
+        // name과 id가 다르면 DB에서 reservation이 나오지 않는다.
+
+        // when
+
+        // then
+    }
+
+    @Test
+    void checkTest3() {
+
+        // given
+        // 두개의 DB에 두개의 reservation을 넣고, name과 id로 체크했을 때, DB가 다르면 안 나온다.
+
+        // when
+
+        // then
     }
 
     @Test
