@@ -39,6 +39,10 @@ public class Reservation {
         return customer;
     }
 
+    public LocalDateTime getReservedTime() {
+        return this.reservedTime;
+    }
+
     public boolean check(String name, String id) {
         if (customer.CheckName(name) && customer.CheckId(id)) {
             return true;
