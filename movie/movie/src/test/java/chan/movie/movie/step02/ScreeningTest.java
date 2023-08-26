@@ -64,8 +64,9 @@ class ScreeningTest {
     @Test
     void reserveTest() {
         // given
-        Reservation reservationAvatar = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
+
         // when
+        Reservation reservationAvatar = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
 
         // then
         assertThat(reservationAvatar).isNotNull();
