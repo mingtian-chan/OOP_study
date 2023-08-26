@@ -205,7 +205,7 @@ class ReservationDBTest {
     }
 
 
-    // Delete를 ReservationDB파일 내로 넣고싶어..
+    // Delete를 ReservationDB파일 내로 넣고싶어.. + 환불 금액도 말해줘야 함...
     @Test
     void deleteTest() {
         // given
