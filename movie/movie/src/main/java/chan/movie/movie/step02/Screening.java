@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class Screening {
     private Movie movie;
+    private MovieCategory category;
     private int sequence;
     private LocalDateTime whenScreened;
     private ReservationDB reservationDB;
