@@ -42,7 +42,7 @@ class ReservationTest {
     }
 
     @Test
-    void initiatingTest(){
+    void initializingTest(){
         // given
 
         // when
