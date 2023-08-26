@@ -45,6 +45,7 @@ class ReservationTest {
     }
 
     @Test
+    @DisplayName("시간 입력이 따로 없는 경우 현재 시간으로 압력")
     void initializingTest(){
         // given
 
@@ -52,7 +53,20 @@ class ReservationTest {
         Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
 
         // then
-        System.out.println("reservationAvatar1 = " + reservationAvatar1);
+//        디버그로 reservation 확인했음....
+//        System.out.println("reservationAvatar1 = " + reservationAvatar1);
+    }
+    @Test
+    @DisplayName("(디버그용) 시간 입력을 따로 하면 그 시간으로 예약시간을 넣어줌. ")
+    void initializingTest2(){
+        // given
+
+        // when
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
+
+        // then
+//        디버그로 reservation 확인했음....
+//        System.out.println("reservationAvatar1 = " + reservationAvatar1);
     }
 
     @Test
