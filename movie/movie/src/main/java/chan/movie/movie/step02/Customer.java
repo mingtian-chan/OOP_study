@@ -8,4 +8,16 @@ public class Customer {
 		this.id = id;
 		this.name = name;
 	}
+
+	public boolean CheckName(String name) {
+		if (this.name == name) {
+			return true;
+		} else return false;
+	}
+
+	public boolean CheckId(String id) {
+		if (this.id == id) {
+			return true;
+		} else return false;
+	}
 }
