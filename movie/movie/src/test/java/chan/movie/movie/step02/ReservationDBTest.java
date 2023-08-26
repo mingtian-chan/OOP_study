@@ -74,6 +74,21 @@ class ReservationDBTest {
     }
 
     @Test
+    @DisplayName("DB에서 Customer 정보 받기")
+    void getCustomerTest() {
+        // given
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+
+
+        // when
+        reservationDB1.insert(reservationAvatar1);
+
+        // then
+        assertThat(reservationDB1.size()).isEqualTo(1);
+    }
+
+    @Test
     void checkTest() {
 
     }
