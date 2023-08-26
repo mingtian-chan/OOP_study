@@ -9,12 +9,17 @@ public class Screening {
     private MovieCategory category;
     private int sequence;
     private LocalDateTime whenScreened;
+    private String cinema; // 영화관
+    private String theater; // 상영관
     private ReservationDB reservationDB;
 
-    public Screening(Movie movie, int sequence, LocalDateTime whenScreened) {
+    public Screening(Movie movie, MovieCategory category, int sequence, LocalDateTime whenScreened, String cinema, String theater) {
         this.movie = movie;
+        this.category = category;
         this.sequence = sequence;
         this.whenScreened = whenScreened;
+        this.cinema = cinema;
+        this.theater = theater;
     }
 
     public LocalDateTime getStartTime() {
