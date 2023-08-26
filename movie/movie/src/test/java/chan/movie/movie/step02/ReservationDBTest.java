@@ -204,6 +204,8 @@ class ReservationDBTest {
         assertThat(retList).isEqualTo(ans);
     }
 
+
+    // Delete를 ReservationDB파일 내로 넣고싶어..
     @Test
     void deleteTest() {
         // given
