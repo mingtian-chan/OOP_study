@@ -9,6 +9,14 @@ public class Customer {
 		this.name = name;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
 	public boolean CheckName(String name) {
 		if (this.name == name) {
 			return true;
