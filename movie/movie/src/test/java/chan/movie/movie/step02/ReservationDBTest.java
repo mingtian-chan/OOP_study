@@ -139,10 +139,21 @@ class ReservationDBTest {
 
         // given
         // 하나의 DB에 두개의 reservation을 넣고, name과 id로 DB를 돌면서 맞는 reservation을 리턴
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+
+        Customer customerA = new Customer("A", "1234");
+        Customer customerB = new Customer("B", "5678");
+
+        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar2 = new Reservation(customerB, screeningAvatar, screeningAvatar.getMovieFee(), 3, reservationDB1);
+
 
         // when
+        reservationDB1.check("A", "1234");
 
         // then
+
+
     }
     @Test
     void checkTest2() {
