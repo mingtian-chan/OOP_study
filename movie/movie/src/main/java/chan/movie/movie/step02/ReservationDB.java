@@ -11,12 +11,14 @@ public class ReservationDB extends ArrayList {
 
 
     public void insert(Reservation reservation) {
-        arrayList.add(reservation);
+        this.add(reservation);
     }
 
-    public void check(){
-
-    }
+//    public void check(String name, String id){
+//        for (Reservation reservation : arrayList) {
+//            reservation.check();
+//        }
+//    }
 
     public void delete() {
 
