@@ -206,5 +206,46 @@ class ReservationDBTest {
 
     @Test
     void deleteTest() {
+        // given
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+        Screening screeningAvatarOK = new Screening(avatar, TWO_DIMENSION,120,
+                LocalDateTime.of(2021, 1, 1, 0, 0, 0),
+                "성신여대점", "11층 09관"
+        );
+        LocalDateTime resDateTime = LocalDateTime.parse("2023-08-26T00:00:00.000");
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), 5, resDateTime, reservationDB1);
+
+        // when
+        // duration ( 현재시간, 예매시간 ) >= 1시간
+        LocalDateTime currDateTime = LocalDateTime.parse("2023-08-24T00:00:00.000");
+        Duration duration = Duration.between(currDateTime, reservationAvatar1.getReservedTime());
+        if (duration.getSeconds() >= 3600) {
+            reservationDB1.remove(reservationAvatar1);
+        }
+        // then
+        // delete 됨
+        assertThat(reservationDB1).isEmpty();
+    }
+    @Test
+    void deleteTestFail() {
+        // given
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+        Screening screeningAvatarOK = new Screening(avatar, TWO_DIMENSION,120,
+                LocalDateTime.of(2021, 1, 1, 0, 0, 0),
+                "성신여대점", "11층 09관"
+        );
+        LocalDateTime resDateTime = LocalDateTime.parse("2023-08-25T00:00:00.000");
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), 5, resDateTime, reservationDB1);
+
+        // when
+        // duration ( 현재시간, 예매시간 ) < 1시간
+        LocalDateTime currDateTime = LocalDateTime.parse("2023-08-24T23:50:00.000");
+        Duration duration = Duration.between(currDateTime, reservationAvatar1.getReservedTime());
+        if (duration.getSeconds() >= 3600) {
+            reservationDB1.remove(reservationAvatar1);
+        }
+        // then
+        // delete 안됨
+        assertThat(reservationDB1).isNotEmpty();
     }
 }
