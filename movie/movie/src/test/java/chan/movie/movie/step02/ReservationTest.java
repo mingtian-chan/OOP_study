@@ -60,9 +60,9 @@ class ReservationTest {
     @DisplayName("(디버그용) 시간 입력을 따로 하면 그 시간으로 예약시간을 넣어줌. ")
     void initializingTest2(){
         // given
-
+        LocalDateTime resDateTime = LocalDateTime.parse("2023-08-26T23:50:45.619");
         // when
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, resDateTime , reservationDB);
 
         // then
 //        디버그로 reservation 확인했음....
@@ -97,7 +97,5 @@ class ReservationTest {
 
 
 
-    @Test
-    void insertDataTest() {
-    }
+
 }
