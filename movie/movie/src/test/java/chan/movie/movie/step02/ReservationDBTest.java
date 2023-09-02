@@ -253,5 +253,21 @@ class ReservationDBTest {
         assertThat(reservationDB1).isNotEmpty();
     }
 
+    @Test
+    void memberTest(){
+        // given
+        Member member1 = new Member(1, 0, 0);
+        Screening screeningAvatar1 = new Screening(avatar, member1, TWO_DIMENSION,120,
+                LocalDateTime.of(2021, 1, 1, 0, 0, 0),
+                "성신여대점", "11층 09관"
+        );
+        ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar1, screeningAvatar1.getMovieFee(), reservationDB1);
 
+        // when
+        reservationDB1.insert(reservationAvatar1);
+        // then
+//        System.out.println("reservationDB1 = " + reservationDB1);
+        assertThat(reservationDB1).isNotNull();
+    }
 }
