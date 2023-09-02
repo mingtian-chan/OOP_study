@@ -60,12 +60,15 @@ class ScreeningTest {
 
         // when
         Member member1 = new Member(1, 0, 0);
-
-        // then
-        // calculateFee 했을 때 (Money)15000원 이 리턴되냐?
-        // 아 Money ans = new Money.wons(15000) 로 웬종일 헤맸네...
+        Screening screeningAvatar1 = new Screening(avatar, member1, TWO_DIMENSION,120,
+                LocalDateTime.of(2021, 1, 1, 0, 0, 0),
+                "성신여대점", "11층 09관"
+        );
         Money ans = Money.wons(15000);
-        assertThat(screeningAvatar.getMovieFee()).isEqualTo(ans);
+        Money expect = screeningAvatar1.calculateFee();
+        // then
+
+        assertThat(expect).isEqualTo(ans);
     }
 
     @Test
