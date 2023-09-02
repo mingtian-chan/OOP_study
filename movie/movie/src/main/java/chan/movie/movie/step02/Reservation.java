@@ -14,22 +14,22 @@ public class Reservation {
     private ReservationDB reservationDB;
 
 
-    public Reservation(Customer customer, Screening Screening, Money fee, int audienceCount,LocalDateTime reservedTime, ReservationDB reservationDB) {
+    public Reservation(Customer customer, Screening screening, Money fee,LocalDateTime reservedTime, ReservationDB reservationDB) {
         this.customer = customer;
-        this.Screening = Screening;
+        this.Screening = screening;
         this.fee = fee;
-        this.audienceCount = audienceCount;
+        this.audienceCount = screening.totalMember();
         this.reservedTime = reservedTime;
         this.reservationDB = reservationDB;
         reservationDB.insert(this);
     }
 
     // overloading
-    public Reservation(Customer customer, Screening Screening, Money fee, int audienceCount, ReservationDB reservationDB) {
+    public Reservation(Customer customer, Screening screening, Money fee, ReservationDB reservationDB) {
         this.customer = customer;
-        this.Screening = Screening;
+        this.Screening = screening;
         this.fee = fee;
-        this.audienceCount = audienceCount;
+        this.audienceCount = screening.totalMember();
         this.reservedTime = LocalDateTime.now();
         this.reservationDB = reservationDB;
         reservationDB.insert(this);
