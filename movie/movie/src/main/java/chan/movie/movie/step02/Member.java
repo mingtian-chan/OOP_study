@@ -10,7 +10,6 @@ public class Member {
     private int adultDiscount = 0;
     private int teenDiscount = 2000;
     private int childDiscount = 5000;
-    private int fee;
 
     public Member(int adult, int teen, int child) {
         this.adult = adult;
@@ -20,5 +19,29 @@ public class Member {
 
     public int totalMember() {
         return adult + teen + child;
+    }
+
+    public int getAdult() {
+        return adult;
+    }
+
+    public int getTeen() {
+        return teen;
+    }
+
+    public int getChild() {
+        return child;
+    }
+
+    public int getAdultDiscount() {
+        return adultDiscount;
+    }
+
+    public int getTeenDiscount() {
+        return teenDiscount;
+    }
+
+    public int getChildDiscount() {
+        return childDiscount;
     }
 }
