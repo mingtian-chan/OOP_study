@@ -40,13 +40,14 @@ public class Screening {
 
     // Customer 랑 Member 를 합칠 수 있지 않을까... 코드가 너무 개판이 되어 가는거 같은데......
     public Reservation reserve(Customer customer, Member member) {
-            return new Reservation(customer, this, calculateFee(member),
+            return new Reservation(customer, this, calculateFee(),
                 reservationDB);
     }
 
-    private Money calculateFee(Member member) {
+    public Money calculateFee() {
+        Member member = this.member;
 
-        Money result = Money.ZERO;
+        Money result = Money.wons(0);
         // 성인요금 = (영화 표값 - 어른 할인 값) * 어른 수
         result.plus(getMovieFee().minus(Money.wons(member.getAdultDiscount())).times(member.getAdult()));
         // 청소년 요금 = (영화 표값 - 청소년 할인 값) * 청소년 수
