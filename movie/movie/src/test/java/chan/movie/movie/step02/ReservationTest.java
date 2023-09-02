@@ -23,6 +23,7 @@ class ReservationTest {
     Movie avatar;
     Screening screeningAvatar;
     Customer chan;
+    Member member;
 
     @BeforeEach
     public void beforeEach(){
@@ -35,7 +36,8 @@ class ReservationTest {
                         new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10,0), LocalTime.of(11,59)),
                         new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))),
                 TWO_DIMENSION);
-        screeningAvatar = new Screening(avatar, TWO_DIMENSION,120,
+        member = new Member(1, 1, 1);
+        screeningAvatar = new Screening(avatar, member, TWO_DIMENSION, 120,
                 LocalDateTime.of(2021, 1, 1, 0, 0, 0),
                 "성신여대점", "11층 09관"
         );
@@ -50,7 +52,7 @@ class ReservationTest {
         // given
 
         // when
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB);
 
         // then
 //        디버그로 reservation 확인했음....
@@ -62,7 +64,7 @@ class ReservationTest {
         // given
         LocalDateTime resDateTime = LocalDateTime.parse("2023-08-26T23:50:45.619");
         // when
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, resDateTime , reservationDB);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), resDateTime , reservationDB);
 
         // then
 //        디버그로 reservation 확인했음....
@@ -74,8 +76,7 @@ class ReservationTest {
     // DB에 접근해서 customer 의 id, name 같은 reservation 반환
     void checkTest() {
         // given
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
-
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB);
         // when
         boolean ret = reservationAvatar1.check("chan", "45694410");
         // then
@@ -87,7 +88,7 @@ class ReservationTest {
     // DB에 접근해서 customer 의 id, name 같은 reservation 반환
     void checkTestFail() {
         // given
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB);
 
         // when
         boolean ret = reservationAvatar1.check("Not chan", "12345678");

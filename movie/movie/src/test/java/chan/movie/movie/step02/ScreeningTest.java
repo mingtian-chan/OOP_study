@@ -25,6 +25,7 @@ class ScreeningTest {
     Screening screeningAvatar;
     Customer chan;
     ReservationDB reservationDB;
+    Member member;
 
     @BeforeEach
     public void beforeEach(){
@@ -37,7 +38,9 @@ class ScreeningTest {
                         new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10,0), LocalTime.of(11,59)),
                         new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))),
                 TWO_DIMENSION);
-        screeningAvatar = new Screening(avatar, TWO_DIMENSION,120,
+
+        member = new Member(1, 1, 1);
+        screeningAvatar = new Screening(avatar, member, TWO_DIMENSION,120,
                 LocalDateTime.of(2021, 1, 1, 0, 0, 0),
                 "성신여대점", "11층 09관"
                 );
@@ -66,7 +69,7 @@ class ScreeningTest {
         // given
 
         // when
-        Reservation reservationAvatar = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB);
+        Reservation reservationAvatar = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB);
 
         // then
         assertThat(reservationAvatar).isNotNull();

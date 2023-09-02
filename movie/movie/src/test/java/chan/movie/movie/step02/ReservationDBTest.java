@@ -24,6 +24,7 @@ class ReservationDBTest {
     Movie avatar;
     Screening screeningAvatar;
     Customer chan;
+    Member member;
 
     @BeforeEach
     public void beforeEach(){
@@ -36,8 +37,8 @@ class ReservationDBTest {
                         new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10,0), LocalTime.of(11,59)),
                         new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))),
                 TWO_DIMENSION);
-
-        screeningAvatar = new Screening(avatar, TWO_DIMENSION,120,
+        member = new Member(1, 1, 1);
+        screeningAvatar = new Screening(avatar, member, TWO_DIMENSION,120,
                 LocalDateTime.of(2021, 1, 1, 0, 0, 0),
                 "성신여대점", "11층 09관"
         );
@@ -50,7 +51,7 @@ class ReservationDBTest {
     void insertTest() {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(chan,  screeningAvatar, screeningAvatar.getMovieFee(), reservationDB1);
 
         // when
         reservationDB1.insert(reservationAvatar1);
@@ -65,8 +66,8 @@ class ReservationDBTest {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
         ReservationDB reservationDB2 = new ReservationDB(new ArrayList());
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
-        Reservation reservationAvatar2 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB2);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB1);
+        Reservation reservationAvatar2 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(),  reservationDB2);
 
 
         // when
@@ -84,7 +85,7 @@ class ReservationDBTest {
 
 
         // when
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(),  reservationDB1);
 
 
         // then
@@ -96,7 +97,7 @@ class ReservationDBTest {
     void checkByIdTest() {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(),  reservationDB1);
         Customer customer1 = new Customer("chan", "45694410");
 
         // when
@@ -112,7 +113,7 @@ class ReservationDBTest {
     void checkByIdTest2() {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB1);
         Customer customer1 = new Customer("notChan", "12345678");
 
         // when
@@ -132,7 +133,7 @@ class ReservationDBTest {
 
         // when
         // 호출하면서 바로 DB에 들어가야함
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB1);
 
         // then
         assertThat(reservationDB1.size()).isEqualTo(1);
@@ -148,8 +149,8 @@ class ReservationDBTest {
         Customer customerA = new Customer("A", "1234");
         Customer customerB = new Customer("B", "5678");
 
-        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
-        Reservation reservationAvatar2 = new Reservation(customerB, screeningAvatar, screeningAvatar.getMovieFee(), 3, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(),  reservationDB1);
+        Reservation reservationAvatar2 = new Reservation(customerB, screeningAvatar, screeningAvatar.getMovieFee(),  reservationDB1);
 
         // when
         ArrayList retList = reservationDB1.check("A", "1234");
@@ -170,8 +171,8 @@ class ReservationDBTest {
         Customer customerA = new Customer("A", "1234");
         Customer customerB = new Customer("B", "5678");
 
-        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
-        Reservation reservationAvatar2 = new Reservation(customerB, screeningAvatar, screeningAvatar.getMovieFee(), 3, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB1);
+        Reservation reservationAvatar2 = new Reservation(customerB, screeningAvatar, screeningAvatar.getMovieFee(), reservationDB1);
 
         // when
         ArrayList retList = reservationDB1.check("Error", "1234");
@@ -192,8 +193,8 @@ class ReservationDBTest {
         Customer customerA = new Customer("A", "1234");
         Customer customerB = new Customer("B", "5678");
 
-        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 5, reservationDB1);
-        Reservation reservationAvatar2 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(), 3, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(),  reservationDB1);
+        Reservation reservationAvatar2 = new Reservation(customerA, screeningAvatar, screeningAvatar.getMovieFee(),  reservationDB1);
 
         // when
         ArrayList retList = reservationDB1.check("A", "1234");
@@ -211,12 +212,12 @@ class ReservationDBTest {
     void deleteTest() {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
-        Screening screeningAvatarOK = new Screening(avatar, TWO_DIMENSION,120,
+        Screening screeningAvatarOK = new Screening(avatar, member, TWO_DIMENSION,120,
                 LocalDateTime.of(2021, 1, 1, 0, 0, 0),
                 "성신여대점", "11층 09관"
         );
         LocalDateTime resDateTime = LocalDateTime.parse("2023-08-26T00:00:00.000");
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), 5, resDateTime, reservationDB1);
+        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), resDateTime, reservationDB1);
 
         // when
         // duration ( 현재시간, 예매시간 ) >= 1시간
@@ -233,19 +234,19 @@ class ReservationDBTest {
     void deleteTestFail() {
         // given
         ReservationDB reservationDB1 = new ReservationDB(new ArrayList());
-        Screening screeningAvatarOK = new Screening(avatar, TWO_DIMENSION,120,
+        Screening screeningAvatarOK = new Screening(avatar, member, TWO_DIMENSION,120,
                 LocalDateTime.of(2021, 1, 1, 0, 0, 0),
                 "성신여대점", "11층 09관"
         );
         LocalDateTime resDateTime = LocalDateTime.parse("2023-08-25T00:00:00.000");
-        Reservation reservation123 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), 5, resDateTime, reservationDB1);
+        Reservation reservation1 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), resDateTime, reservationDB1);
 
         // when
         // duration ( 현재시간, 예매시간 ) < 1시간
         LocalDateTime currDateTime = LocalDateTime.parse("2023-08-24T23:50:00.000");
-        Duration duration = Duration.between(currDateTime, reservation123.getReservedTime());
+        Duration duration = Duration.between(currDateTime, reservation1.getReservedTime());
         if (duration.getSeconds() >= 3600) {
-            reservationDB1.remove(reservation123);
+            reservationDB1.remove(reservation1);
         }
 
         // then

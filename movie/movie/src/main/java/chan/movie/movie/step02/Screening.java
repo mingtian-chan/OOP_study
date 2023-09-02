@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class Screening {
     private Movie movie;
+    private Member member;
     private MovieCategory category;
     private int sequence;
     private LocalDateTime whenScreened;
@@ -13,8 +14,9 @@ public class Screening {
     private String theater; // 상영관
     private ReservationDB reservationDB;
 
-    public Screening(Movie movie, MovieCategory category, int sequence, LocalDateTime whenScreened, String cinema, String theater) {
+    public Screening(Movie movie, Member member, MovieCategory category, int sequence, LocalDateTime whenScreened, String cinema, String theater) {
         this.movie = movie;
+        this.member = member;
         this.category = category;
         this.sequence = sequence;
         this.whenScreened = whenScreened;
@@ -39,7 +41,7 @@ public class Screening {
     // Customer 랑 Member 를 합칠 수 있지 않을까... 코드가 너무 개판이 되어 가는거 같은데......
     public Reservation reserve(Customer customer, int audienceCount) {
             return new Reservation(customer, this, calculateFee(audienceCount),
-                audienceCount,reservationDB);
+                reservationDB);
     }
 
     private Money calculateFee(int audienceCount) {
