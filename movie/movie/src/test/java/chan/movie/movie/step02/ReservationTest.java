@@ -33,8 +33,8 @@ class ReservationTest {
                         new SequenceCondition(1),
                         new SequenceCondition(10),
                         new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10,0), LocalTime.of(11,59)),
-                        new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))));
-
+                        new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))),
+                TWO_DIMENSION);
         screeningAvatar = new Screening(avatar, TWO_DIMENSION,120,
                 LocalDateTime.of(2021, 1, 1, 0, 0, 0),
                 "성신여대점", "11층 09관"
