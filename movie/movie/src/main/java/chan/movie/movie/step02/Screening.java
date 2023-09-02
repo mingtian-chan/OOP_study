@@ -47,12 +47,13 @@ public class Screening {
     private Money calculateFee(Member member) {
 
         Money result = Money.ZERO;
-        for (Object member : member) {
-            member
-
-        }
-
-        return result
+        // 성인요금 = (영화 표값 - 어른 할인 값) * 어른 수
+        result.plus(getMovieFee().minus(Money.wons(member.getAdultDiscount())).times(member.getAdult()));
+        // 청소년 요금 = (영화 표값 - 청소년 할인 값) * 청소년 수
+        result.plus(getMovieFee().minus(Money.wons(member.getTeenDiscount())).times(member.getTeen()));
+        // 아동 요금 = (영화 표값 - 아동 할인 값) * 아이 수
+        result.plus(getMovieFee().minus(Money.wons(member.getChildDiscount())).times(member.getChild()));
+        return result;
     }
 
     public int totalMember() {
