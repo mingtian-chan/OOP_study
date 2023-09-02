@@ -35,17 +35,24 @@ public class Screening {
     // Movie에 있는 getFee는 Screening에서 그 책임을 받는게 나아 보여.
     // 왜냐면 "영화관"마다, 인간 유형마다 다 금액이 다르니까.
     public Money getMovieFee() {
-        return movie.getFee();
+        return Money.wons(category.movieCharge);
     }
 
     // Customer 랑 Member 를 합칠 수 있지 않을까... 코드가 너무 개판이 되어 가는거 같은데......
-    public Reservation reserve(Customer customer, int audienceCount) {
-            return new Reservation(customer, this, calculateFee(audienceCount),
+    public Reservation reserve(Customer customer, Member member) {
+            return new Reservation(customer, this, calculateFee(member),
                 reservationDB);
     }
 
-    private Money calculateFee(int audienceCount) {
-        return movie.calculateTotalMovieFee(this).times(audienceCount);
+    private Money calculateFee(Member member) {
+
+        Money result = Money.ZERO;
+        for (Object member : member) {
+            member
+
+        }
+
+        return result
     }
 
     public int totalMember() {

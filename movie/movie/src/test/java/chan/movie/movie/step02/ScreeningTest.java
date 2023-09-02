@@ -7,6 +7,7 @@ import chan.movie.movie.step02.pricing.PeriodCondition;
 import chan.movie.movie.step02.pricing.SequenceCondition;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
@@ -51,17 +52,20 @@ class ScreeningTest {
 
     }
 
-
     @Test
-    void getStartTimeTest() {
-    }
-
-    @Test
-    void isSequenceTest() {
-    }
-
-    @Test
+    @DisplayName("2D 성인 1인일 때 가격 15000원인지?")
     void getMovieFeeTest() {
+        // given
+        // beforeEach condition
+
+        // when
+        Member member1 = new Member(1, 0, 0);
+
+        // then
+        // calculateFee 했을 때 (Money)15000원 이 리턴되냐?
+        // 아 Money ans = new Money.wons(15000) 로 웬종일 헤맸네...
+        Money ans = Money.wons(15000);
+        assertThat(screeningAvatar.getMovieFee()).isEqualTo(ans);
     }
 
     @Test
