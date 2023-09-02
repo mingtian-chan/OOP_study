@@ -3,7 +3,7 @@ package chan.movie.movie.step02;
 import java.util.ArrayList;
 
 public class ReservationDB extends ArrayList {
-    private ArrayList arrayList ;
+    private ArrayList arrayList;
 
     public ReservationDB(ArrayList reservationDB) {
         this.arrayList = reservationDB;
