@@ -34,7 +34,8 @@ class ReservationDBTest {
                         new SequenceCondition(1),
                         new SequenceCondition(10),
                         new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10,0), LocalTime.of(11,59)),
-                        new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))));
+                        new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10,0), LocalTime.of(20,59))),
+                TWO_DIMENSION);
 
         screeningAvatar = new Screening(avatar, TWO_DIMENSION,120,
                 LocalDateTime.of(2021, 1, 1, 0, 0, 0),
@@ -237,17 +238,20 @@ class ReservationDBTest {
                 "성신여대점", "11층 09관"
         );
         LocalDateTime resDateTime = LocalDateTime.parse("2023-08-25T00:00:00.000");
-        Reservation reservationAvatar1 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), 5, resDateTime, reservationDB1);
+        Reservation reservation123 = new Reservation(chan, screeningAvatarOK, screeningAvatar.getMovieFee(), 5, resDateTime, reservationDB1);
 
         // when
         // duration ( 현재시간, 예매시간 ) < 1시간
         LocalDateTime currDateTime = LocalDateTime.parse("2023-08-24T23:50:00.000");
-        Duration duration = Duration.between(currDateTime, reservationAvatar1.getReservedTime());
+        Duration duration = Duration.between(currDateTime, reservation123.getReservedTime());
         if (duration.getSeconds() >= 3600) {
-            reservationDB1.remove(reservationAvatar1);
+            reservationDB1.remove(reservation123);
         }
+
         // then
         // delete 안됨
         assertThat(reservationDB1).isNotEmpty();
     }
+
+
 }
